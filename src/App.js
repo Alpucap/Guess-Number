@@ -10,6 +10,7 @@ function App() {
   const [loseStreaks, setLoseStreaks] = useState(() => {
     return parseInt(localStorage.getItem('loseStreaks')) || 0;
   });
+  const [isGameInProgress, setIsGameInProgress] = useState(false);
 
   const maxNum = 5;
 
@@ -17,25 +18,27 @@ function App() {
     let ChoosenOne = Math.floor(Math.random() * maxNum) + 1;
 
     const handleButton = (buttonNumber) => {
+      if (isGameInProgress) return; 
+
+      setIsGameInProgress(true);
+
       if (buttonNumber === ChoosenOne) {
         setText("You Win!");
-        setpText("Please Wait...");
+        setpText("Loading next game...");
         const newWinStreak = winStreaks + 1;
         setWinStreaks(newWinStreak); 
         localStorage.setItem('winStreaks', newWinStreak); 
-        setTimeout(() => {
-          handleRefresh();
-        }, 2000);
       } else {
         setText(`You Lose! The right number is ${ChoosenOne}`);
-        setpText("Please Wait...");
+        setpText("Loading next game...");
         const newLoseStreak = loseStreaks + 1;
         setLoseStreaks(newLoseStreak); 
         localStorage.setItem('loseStreaks', newLoseStreak); 
-        setTimeout(() => {
-          handleRefresh();
-        }, 2000);
       }
+      setTimeout(() => {
+        handleRefresh();
+        setIsGameInProgress(false);
+      }, 2000);
     };
     return handleButton;
   };
@@ -48,10 +51,13 @@ function App() {
   const handleClick = randomNumber();
 
   const handleResetScore = () => {
+    if (isGameInProgress) return; 
+    setIsGameInProgress(true);
     setWinStreaks(0);
     setLoseStreaks(0); 
     localStorage.removeItem('winStreaks'); 
     localStorage.removeItem('loseStreaks'); 
+    setIsGameInProgress(false);
   };
 
   return (
