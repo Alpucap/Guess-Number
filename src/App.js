@@ -1,37 +1,58 @@
 import './App.css';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 function App() {
   const [text, setText] = useState('Please click one of the number buttons on the screen...');
   const [ptext, setpText] = useState();
+  const [winStreaks, setWinStreaks] = useState(() => {
+    return parseInt(localStorage.getItem('winStreaks')) || 0;
+  });
+  const [loseStreaks, setLoseStreaks] = useState(() => {
+    return parseInt(localStorage.getItem('loseStreaks')) || 0;
+  });
 
   const maxNum = 5;
+
   const randomNumber = () => {
     let ChoosenOne = Math.floor(Math.random() * maxNum) + 1;
 
     const handleButton = (buttonNumber) => {
-      if(buttonNumber === ChoosenOne){
+      if (buttonNumber === ChoosenOne) {
         setText("You Win!");
-        setpText("Please Wait...")
-        setTimeout (() => {
+        setpText("Please Wait...");
+        const newWinStreak = winStreaks + 1;
+        setWinStreaks(newWinStreak); 
+        localStorage.setItem('winStreaks', newWinStreak); 
+        setTimeout(() => {
           handleRefresh();
-        }, 2000)
-      }
-      else{
+        }, 2000);
+      } else {
         setText(`You Lose! The right number is ${ChoosenOne}`);
-        setpText("Please Wait...")
-        setTimeout (() => {
+        setpText("Please Wait...");
+        const newLoseStreak = loseStreaks + 1;
+        setLoseStreaks(newLoseStreak); 
+        localStorage.setItem('loseStreaks', newLoseStreak); 
+        setTimeout(() => {
           handleRefresh();
-        }, 2000)
+        }, 2000);
       }
     };
     return handleButton;
-  }
+  };
+
   function handleRefresh() {
-    window.location.reload(); 
+    setText('Please click one of the number buttons on the screen...');
+    setpText('');
   }
 
   const handleClick = randomNumber();
+
+  const handleResetScore = () => {
+    setWinStreaks(0);
+    setLoseStreaks(0); 
+    localStorage.removeItem('winStreaks'); 
+    localStorage.removeItem('loseStreaks'); 
+  };
 
   return (
     <div className="App">
@@ -46,6 +67,13 @@ function App() {
         </div>
         <p>{ptext}</p>
       </div>
+      <div className = "score">
+        <div className = "win">Win: {winStreaks}</div>
+        <div className = "lose">Lose: {loseStreaks}</div>
+      </div>
+      <button onClick={handleResetScore} className="reset">
+        Reset
+      </button>
       <footer>Made by Hans Christian Handoto</footer>
     </div>
   );
