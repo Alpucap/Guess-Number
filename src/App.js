@@ -1,5 +1,6 @@
 import './App.css';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect,  useRef} from 'react';
+import backgroundMusic from './asset/backsound.mp3';
 
 function App() {
   const [text, setText] = useState('Please click one of the number buttons on the screen...');
@@ -11,8 +12,28 @@ function App() {
     return parseInt(localStorage.getItem('loseStreaks')) || 0;
   });
   const [isGameInProgress, setIsGameInProgress] = useState(false);
+  const [isPlaying, setIsPlaying] = useState(false);
 
   const maxNum = 5;
+  const audioRef = useRef(new Audio(backgroundMusic));
+
+  useEffect(() => {
+    const audio = audioRef.current;
+    return () => {
+      audio.pause();
+      audio.currentTime = 0;
+    };
+  }, []);
+
+  const toggleMusic = () => {
+    const audio = audioRef.current;
+    if (isPlaying) {
+      audio.pause();
+    } else {
+      audio.play().catch(error => console.log('Audio playback failed:', error));
+    }
+    setIsPlaying(!isPlaying);
+  };
 
   const randomNumber = () => {
     let ChoosenOne = Math.floor(Math.random() * maxNum) + 1;
@@ -62,6 +83,9 @@ function App() {
 
   return (
     <div className="App">
+      <div onClick={toggleMusic} className="music-toggle">
+        {isPlaying ? 'Pause Music' : 'Play Music'}
+      </div>
       <div className="wrapper">
         <h1>{text}</h1>
         <div className="Buttons">
