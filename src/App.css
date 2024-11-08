@@ -9,15 +9,17 @@
   box-sizing: border-box;
 }
 
+::-webkit-scrollbar{
+  scrollbar-width: none;
+}
 .App {
   text-align: center;
   height: 100vh; 
   display: flex; 
   flex-direction: column;
-  justify-content: center; 
   align-items: center; 
   flex-grow: 1;
-  margin: 10px;
+  margin: 80px 10px 10px 10px;
 }
 
 .wrapper {
@@ -50,7 +52,15 @@ button{
   border-radius: 0.5rem;
   cursor: pointer;
   font-weight: 700;
+  border: 0px ;
+  box-shadow: 0px 5px 0px #7b7a71;
 }
+
+button:active{
+  box-shadow: 0px 2px 0px #7b7a71;
+  transform: translateY(3px);
+}
+
 .Buttons{
   width: auto;
   align-items: center;
@@ -61,8 +71,21 @@ button{
 }
 .reset{
   margin-top: 20px;
-  font-Size: 1rem;
+  font-Size: 1.7rem;
+  text-align: center;
+  justify-content: center;
   width: 150px;
+  font-weight: 500;
+}
+.music-toggle {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: transparent;
+  color: #F0EDCC;
+  font-family: 'Montserrat', sans-serif;
+  border: none;
+  cursor: pointer;
 }
 .score{
   display: flex;
@@ -124,7 +147,7 @@ footer {
   
   .reset{
     margin-top: 20px;
-    font-Size: 0.8rem;
+    font-Size: 1rem;
   }
 
   .score{
@@ -191,7 +214,7 @@ footer {
   
   .reset{
     margin-top: 20px;
-    font-Size: 0.8rem;
+    font-Size: 1rem;
   }
 
   footer {
