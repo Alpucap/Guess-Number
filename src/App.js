@@ -3,6 +3,7 @@ import React, { useState, useEffect,  useRef} from 'react';
 import backgroundMusic from './asset/backsound.mp3';
 import failMusic from './asset/fail.mp3';
 import winMusic from './asset/win.mp3';
+import { Analytics } from "@vercel/analytics/react"
 
 function App() {
   const [text, setText] = useState('Please click one of the number buttons on the screen...');
@@ -110,6 +111,7 @@ function App() {
         Reset
       </button>
       <footer>Made by Hans Christian Handoto</footer>
+      <Analytics />
     </div>
   );
 }
