@@ -1,6 +1,8 @@
 import './App.css';
 import React, { useState, useEffect,  useRef} from 'react';
 import backgroundMusic from './asset/backsound.mp3';
+import failMusic from './asset/fail.mp3';
+import winMusic from './asset/win.mp3';
 
 function App() {
   const [text, setText] = useState('Please click one of the number buttons on the screen...');
@@ -16,7 +18,9 @@ function App() {
 
   const maxNum = 5;
   const audioRef = useRef(new Audio(backgroundMusic));
-
+  const failAudioRef = useRef(new Audio(failMusic));
+  const winAudioRef = useRef(new Audio(winMusic));
+  
   useEffect(() => {
     const audio = audioRef.current;
     return () => {
@@ -40,16 +44,17 @@ function App() {
 
     const handleButton = (buttonNumber) => {
       if (isGameInProgress) return; 
-
       setIsGameInProgress(true);
 
       if (buttonNumber === ChoosenOne) {
+        winAudioRef.current.play().catch(error => console.log('Failed to play sound:', error));
         setText("You Win!");
         setpText("Loading next game...");
         const newWinStreak = winStreaks + 1;
         setWinStreaks(newWinStreak); 
         localStorage.setItem('winStreaks', newWinStreak); 
       } else {
+        failAudioRef.current.play().catch(error => console.log('Failed to play sound:', error));
         setText(`You Lose! The right number is ${ChoosenOne}`);
         setpText("Loading next game...");
         const newLoseStreak = loseStreaks + 1;
@@ -59,7 +64,7 @@ function App() {
       setTimeout(() => {
         handleRefresh();
         setIsGameInProgress(false);
-      }, 2000);
+      }, 3000);
     };
     return handleButton;
   };
