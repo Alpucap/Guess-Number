@@ -22,6 +22,11 @@
   margin: 50px;
 }
 
+.music-toggle{
+  cursor: pointer;
+  font-size: 3rem;
+}
+
 .project-item{
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -62,6 +67,9 @@
   .project h1{
     font-size: 1.5rem;
   }
+  .music-toggle{
+    font-size: 1.5rem;
+  }
   .project{
     align-items: center;
     margin: 30px;
@@ -83,6 +91,9 @@
 
 @media screen and (max-width: 360px) {
   .project h1{
+    font-size: 1.5rem;
+  }
+  .music-toggle{
     font-size: 1.5rem;
   }
   .project{

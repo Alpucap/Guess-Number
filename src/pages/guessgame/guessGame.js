@@ -1,8 +1,8 @@
 import './guessGame.css';
 import React, { useState, useEffect, useRef } from 'react';
-import backgroundMusic from '../asset/backsound.mp3';
-import failMusic from '../asset/fail.mp3';
-import winMusic from '../asset/win.mp3';
+import backgroundMusic from '../../asset/backsound.mp3';
+import failMusic from '../../asset/fail.mp3';
+import winMusic from '../../asset/win.mp3';
 
 const GuessGame = () => {
   const [text, setText] = useState('Please click one of the number buttons on the screen...');
@@ -10,7 +10,6 @@ const GuessGame = () => {
   const [winStreaks, setWinStreaks] = useState(() => parseInt(localStorage.getItem('winStreaks')) || 0);
   const [loseStreaks, setLoseStreaks] = useState(() => parseInt(localStorage.getItem('loseStreaks')) || 0);
   const [isGameInProgress, setIsGameInProgress] = useState(false);
-  const [isPlaying, setIsPlaying] = useState(false);
   const [ChoosenOne, setChoosenOne] = useState(() => Math.floor(Math.random() * 5) + 1);
 
   const audioRef = useRef(new Audio(backgroundMusic));
@@ -25,15 +24,6 @@ const GuessGame = () => {
     };
   }, []);
 
-  const toggleMusic = () => {
-    const audio = audioRef.current;
-    if (isPlaying) {
-      audio.pause();
-    } else {
-      audio.play().catch(error => console.log('Audio playback failed:', error));
-    }
-    setIsPlaying(!isPlaying);
-  };
 
   const handleButton = (buttonNumber) => {
     if (isGameInProgress) return; 
@@ -77,7 +67,7 @@ const GuessGame = () => {
   };
 
   return (
-    <div className="App">
+    <div className="guessgame">
       <div className="wrapper">
         <h1>{text}</h1>
         <div className="Buttons">
@@ -96,10 +86,7 @@ const GuessGame = () => {
       <button onClick={handleResetScore} className="reset">
         Reset
       </button>
-      <div onClick={toggleMusic} className="music-toggle">
-        {isPlaying ? 'Pause Music' : 'Play Music'}
-      </div>
-      <footer>Made by Hans Christian Handoto</footer>
+      <footer>Made by HC SANDBOX</footer>
     </div>
   );
 };
