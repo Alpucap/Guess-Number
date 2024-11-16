@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
-import '../../App.css';
-import HeadImg from '../../asset/Head.png';
-import TailImg from '../../asset/Tail.png';
-import audioMusic from '../../asset/draw.mp3';
+import '../App.css';
+import HeadImg from '../asset/Head.png';
+import TailImg from '../asset/Tail.png';
+import audioMusic from '../asset/draw.mp3';
 
 const CoinFlip = () => {
     const [text, setText] = useState('Please Flip The Coin');

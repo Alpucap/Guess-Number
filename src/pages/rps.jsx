@@ -1,13 +1,13 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Link } from "react-router-dom";
-import backgroundMusic from '../../asset/backsound.mp3';
-import failMusic from '../../asset/fail.mp3';
-import winMusic from '../../asset/win.mp3';
-import drawMusic from '../../asset/draw.mp3';
-import rockImg from '../../asset/Rock.png';
-import paperImg from '../../asset/Paper.png';
-import scissorsImg from '../../asset/Scissors.png';
-import '../../App.css';
+import backgroundMusic from '../asset/backsound.mp3';
+import failMusic from '../asset/fail.mp3';
+import winMusic from '../asset/win.mp3';
+import drawMusic from '../asset/draw.mp3';
+import rockImg from '../asset/Rock.png';
+import paperImg from '../asset/Paper.png';
+import scissorsImg from '../asset/Scissors.png';
+import '../App.css';
 
 const RPS = () => {
     const [text, setText] = useState('Pick your weapon!');

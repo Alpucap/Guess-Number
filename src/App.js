@@ -2,9 +2,10 @@ import './App.css';
 import React, { useState, useEffect, useRef } from 'react';
 import { HashRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import Navbar from './components/navbar';
-import RPS from './pages/rps/rps';
-import CoinFlip from './pages/coinflip/coinflip'
-import GuessGame from './pages/guessgame/guessGame';
+import RPS from './pages/rps';
+import CoinFlip from './pages/coinflip'
+import ColorSlider from './pages/colorslider'
+import GuessGame from './pages/guessGame';
 import { Analytics } from '@vercel/analytics/react';
 import backgroundMusic from './asset/backsound.mp3';
 import { FaPlay, FaPause } from 'react-icons/fa';
@@ -54,9 +55,9 @@ function App() {
                 Coin Flip
               </div>
             </Link>
-            <Link to="#" className="project-block pointer-events-none opacity-50">
+            <Link to="/colorslider" className="project-block">
               <div className="bg-[#F0EDCC] h-24 w-full flex items-center justify-center rounded-lg text-lg font-semibold hover:bg-[#d8d5b7] hover:scale-105 transform transition-transform duration-300">
-                Coming Soon
+                Color Slider
               </div>
             </Link>
             <Link to="#" className="project-block pointer-events-none opacity-50">
@@ -77,6 +78,8 @@ function App() {
         {/* Coin Flip Route */}
         <Route path="/coinflip" element={<CoinFlip />} />
 
+        {/* Color Slider Route */}
+        <Route path="/colorslider" element={<ColorSlider />} />
       </Routes>
       <Analytics />
     </Router>
