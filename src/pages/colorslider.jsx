@@ -35,7 +35,7 @@ const ColorSlider = () => {
         <h1 className="text-[#F0EDCC] text-2xl md:text-3xl lg:text-6xl font-light mb-20">Color Sliders</h1>
         <div className="flex flex-col md:flex-row lg:flex-row items-center gap-4 md:gap-8 lg:gap-16">
             <div 
-              className="w-[250px] h-[250px]"
+              className="w-[250px] h-[250px] rounded-md"
               style={{ backgroundColor: `rgb(${value1}, ${value2}, ${value3})` }} 
             ></div>
             <div className="flex flex-col items-center justify-center gap-4">
