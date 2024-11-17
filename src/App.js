@@ -1,11 +1,16 @@
 import './App.css';
 import React, { useState, useEffect, useRef } from 'react';
 import { HashRouter as Router, Routes, Route, Link } from 'react-router-dom';
+
+//Pages & Components
 import Navbar from './components/navbar';
 import RPS from './pages/rps';
 import CoinFlip from './pages/coinflip'
 import ColorSlider from './pages/colorslider'
 import GuessGame from './pages/guessGame';
+import MoveBot from './pages/movebot';
+
+//Others
 import { Analytics } from '@vercel/analytics/react';
 import backgroundMusic from './asset/backsound.mp3';
 import { FaPlay, FaPause } from 'react-icons/fa';
@@ -60,6 +65,11 @@ function App() {
                 Color Slider
               </div>
             </Link>
+            <Link to="/movebot" className="project-block">
+              <div className="bg-[#F0EDCC] h-24 w-full flex items-center justify-center rounded-lg text-lg font-semibold hover:bg-[#d8d5b7] hover:scale-105 transform transition-transform duration-300">
+                Move The Warrior
+              </div>
+            </Link>
             <Link to="#" className="project-block pointer-events-none opacity-50">
               <div className="bg-[#F0EDCC] h-24 w-full flex items-center justify-center rounded-lg text-lg font-semibold hover:bg-[#d8d5b7] hover:scale-105 transform transition-transform duration-300">
                 Coming Soon
@@ -80,6 +90,9 @@ function App() {
 
         {/* Color Slider Route */}
         <Route path="/colorslider" element={<ColorSlider />} />
+
+        {/* Color Slider Route */}
+        <Route path="/movebot" element={<MoveBot />} />
       </Routes>
       <Analytics />
     </Router>
