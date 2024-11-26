@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 const ColorSlider = () => {
   const [value1, setValue1] = useState(0);
   const [value2, setValue2] = useState(0);
   const [value3, setValue3] = useState(0);
+  const [hex, setHex] = useState('');
 
   const handleSliderChange1 = (event) => {
     setValue1(event.target.value);
@@ -29,15 +30,34 @@ const ColorSlider = () => {
     setValue3(event.target.value);
   };
 
+  const rgbToHex = (r, g, b) => {
+    return (
+      '#' +
+      [r, g, b]
+        .map((val) => {
+          const hex = parseInt(val, 10).toString(16);
+          return hex.length === 1 ? '0' + hex : hex; 
+        })
+        .join('')
+    ).toUpperCase();
+  };
+
+  useEffect(() => {
+    setHex(rgbToHex(value1, value2, value3));
+  }, [value1, value2, value3]);
+
   return (
     <div className="text-center h-screen flex flex-col items-center flex-grow mt-20 mx-2">
       <div className="flex flex-col items-center justify-center">
         <h1 className="text-[#F0EDCC] text-2xl md:text-3xl lg:text-6xl font-light mb-20">Color Sliders</h1>
         <div className="flex flex-col md:flex-row lg:flex-row items-center gap-4 md:gap-8 lg:gap-16">
-            <div 
-              className="w-[250px] h-[250px] rounded-md"
-              style={{ backgroundColor: `rgb(${value1}, ${value2}, ${value3})` }} 
-            ></div>
+            <div className="flex flex-col items-center gap-4">
+              <div 
+                className="w-[250px] h-[250px] rounded-md"
+                style={{ backgroundColor: `rgb(${value1}, ${value2}, ${value3})` }} 
+              ></div>
+              <p style={{color: `rgb(${value1}, ${value2}, ${value3})`}}>{hex}</p>
+            </div>
             <div className="flex flex-col items-center justify-center gap-4">
                 <div className="flex flex-col items-center space-y-2">
                     <label className="text-[#F0EDCC] text-sm md:text-md lg:text-lg font-medium">Red:</label>
