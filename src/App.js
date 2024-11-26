@@ -9,6 +9,8 @@ import CoinFlip from './pages/coinflip'
 import ColorSlider from './pages/colorslider'
 import GuessGame from './pages/guessGame';
 import MoveBot from './pages/movebot';
+import QuestionBot from './pages/questionbot';
+import CryptoDashboard from './pages/cryptodashboard';
 
 //Others
 import { Analytics } from '@vercel/analytics/react';
@@ -70,6 +72,16 @@ function App() {
                 Move The Warrior
               </div>
             </Link>
+            <Link to="/questionbot" className="project-block pointer-events-none opacity-50">
+              <div className="bg-[#F0EDCC] h-24 w-full flex items-center justify-center rounded-lg text-lg font-semibold hover:bg-[#d8d5b7] hover:scale-105 transform transition-transform duration-300">
+                Question Bot [Under Maintenance]
+              </div>
+            </Link>
+            <Link to="/cryptodashboard" className="project-block">
+              <div className="bg-[#F0EDCC] h-24 w-full flex items-center justify-center rounded-lg text-lg font-semibold hover:bg-[#d8d5b7] hover:scale-105 transform transition-transform duration-300">
+                Crypto Dashboard
+              </div>
+            </Link>
             <Link to="#" className="project-block pointer-events-none opacity-50">
               <div className="bg-[#F0EDCC] h-24 w-full flex items-center justify-center rounded-lg text-lg font-semibold hover:bg-[#d8d5b7] hover:scale-105 transform transition-transform duration-300">
                 Coming Soon
@@ -91,8 +103,14 @@ function App() {
         {/* Color Slider Route */}
         <Route path="/colorslider" element={<ColorSlider />} />
 
-        {/* Color Slider Route */}
+        {/* Move Bot */}
         <Route path="/movebot" element={<MoveBot />} />
+
+        {/* Question Bot */}
+        <Route path="/questionbot" element={<QuestionBot />} />
+        
+        {/* Crypto Dashboard */}
+        <Route path="/cryptodashboard" element={<CryptoDashboard />} />
       </Routes>
       <Analytics />
     </Router>
